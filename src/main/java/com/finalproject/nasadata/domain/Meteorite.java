@@ -19,8 +19,8 @@ public class Meteorite {
     private String year;
     private Double recLat;
     private Double recLong;
-    private Point geolocation;
 
+    private String geolocation;
 
 
     public Meteorite() {
@@ -100,10 +100,10 @@ public class Meteorite {
     }
 
     @Column(name="geolocation")
-    public Point getGeolocation() {
+    public String getGeolocation() {
         return geolocation;
     }
-    public void setGeolocation(Point geolocation) {
+    public void setGeolocation(String geolocation) {
         this.geolocation = geolocation;
     }
 
@@ -157,36 +157,6 @@ public class Meteorite {
                 '}';
     }
 
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Meteorite meteorite = (Meteorite) o;
-//
-//        return id.equals(meteorite.id);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return id.hashCode();
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Meteorite{" +
-//                "name='" + name + '\'' +
-//                ", id=" + id +
-//                ", nameType='" + nameType + '\'' +
-//                ", reClass='" + reClass + '\'' +
-//                ", mass=" + mass +
-//                ", fall='" + fall + '\'' +
-//                ", timestamp='" + timestamp + '\'' +
-//                ", recLat=" + recLat +
-//                ", recLong=" + recLong +
-//                '}';
-//    }
 }
 
 

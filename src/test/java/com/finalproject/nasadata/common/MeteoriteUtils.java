@@ -21,9 +21,9 @@ public class MeteoriteUtils {
         String year = "1989";
         Double recLat = 10.0002;
         Double recLong = -11.394;
-        Point geoLocation = new Point();
+//        String geoLocation = new Point();
 
-        geoLocation.setLocation(recLat, recLong);
+//        geoLocation.setLocation(recLat, recLong);
 
         meteorite.setName(name);
         meteorite.setNameType(nameType);
@@ -33,7 +33,7 @@ public class MeteoriteUtils {
         meteorite.setYear(year);
         meteorite.setRecLat(recLat);
         meteorite.setRecLong(recLong);
-        meteorite.setGeolocation(geoLocation);
+//        meteorite.setGeolocation(geoLocation);
         return meteorite;
 
     }

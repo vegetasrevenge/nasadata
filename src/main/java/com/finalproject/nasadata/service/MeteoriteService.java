@@ -2,9 +2,11 @@ package com.finalproject.nasadata.service;
 
 
 import com.finalproject.nasadata.domain.Meteorite;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface MeteoriteService {
     public Meteorite add(Meteorite meteorite);
     void add(List<Meteorite> meteoriteList);

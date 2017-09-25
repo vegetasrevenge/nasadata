@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Meteorites</title>
+</head>
+<body>
+
+    <h1>Meteorites landing page</h1>
+
+    <div class = "container">
+        <div class = "content" th:each="meteorite : ${meteorites}">
+            <div>
+                <span th:text="${meteorite.name}"></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

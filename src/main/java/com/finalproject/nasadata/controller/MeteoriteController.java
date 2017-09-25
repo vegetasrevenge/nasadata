@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.List;
+
+import static com.sun.deploy.config.JREInfo.getAll;
 
 @RestController
 public class MeteoriteController {
@@ -17,21 +20,18 @@ public class MeteoriteController {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping("api/meteorite")
-    public String addCustomer(@RequestBody String json) throws IOException {
-        Meteorite meteorite = objectMapper.readValue(json, Meteorite.class);
-        meteoriteService.add(meteorite);
-        return "add complete";
+
+    @GetMapping("/meteorites")
+    public String getMeteorites(Model model) {
+        model.addAttribute("meteorites", getAll()).toString();
+        System.out.println(model);
+        return "meteorites";
     }
 
-    @GetMapping("api/meteorites")
-    public List<Meteorite> getAll(Model model) {
-        return meteoriteService.getAll();
-    }
-
-    @GetMapping("api/meteorites/{id}")
+    @GetMapping("/meteorites/{id}")
     public Meteorite getMeteorite(@PathVariable("id") Integer id) {
         return meteoriteService.getById(id);
     }
+
 
 }
