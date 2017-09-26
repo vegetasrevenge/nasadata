@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import static com.sun.deploy.config.JREInfo.getAll;
 
@@ -22,11 +24,11 @@ public class MeteoriteController {
 
 
     @GetMapping("/meteorites")
-    public String getMeteorites(Model model) {
-        model.addAttribute("meteorites", getAll()).toString();
-        System.out.println(model);
-        return "meteorites";
+    public List<Meteorite> getMeteorites() {
+        List<Meteorite> meteoriteList = meteoriteService.getAll();
+        return meteoriteList;
     }
+
 
     @GetMapping("/meteorites/{id}")
     public Meteorite getMeteorite(@PathVariable("id") Integer id) {
