@@ -29,4 +29,6 @@ public class ViewsController {
         List<Meteorite> meteorites = meteoriteService.getAll().stream().limit(10).collect(Collectors.toList());
         return meteorites;
     }
+
+
 }

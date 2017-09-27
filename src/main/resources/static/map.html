@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<h3>My Google Maps Demo</h3>
+<div id="map"></div>
+<script>
+
+    let map;
+
+    function initMap() {
+        var acapulco = {lat: 16.88333, lng: -99.9};
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: acapulco
+        });
+        var marker = new google.maps.Marker({
+            position: acapulco,
+            map: map
+        });
+    }
+
+    fetch('/api/meteorites')
+        .then(function (response) {
+            return response.json();
+        }).then(plotMarkers);
+
+    let markers;
+    let bounds;
+
+    function plotMarkers(m) {
+
+        markers = [];
+        bounds = new google.maps.LatLngBounds();
+        console.log(map);
+        m.forEach(function (marker) {
+            //create text windows for marker
+            var position = new google.maps.LatLng(marker.recLat, marker.recLong);
+            console.log(marker);
+            markers.push(
+                new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                })
+            );
+            bounds.extend(position);
+        })
+//        map.fitBounds(bounds);
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Xti-diTU1I36rLXgCAw6Mb-L-Yv7dNo&callback=initMap">
+</script>
+</body>
+</html>

@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.stream.Collectors;
 
 import static com.sun.deploy.config.JREInfo.getAll;
 
@@ -22,13 +23,11 @@ public class MeteoriteController {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-
     @GetMapping("api/meteorites")
     public List<Meteorite> getMeteorites() {
         List<Meteorite> meteoriteList = meteoriteService.getAll();
-        return meteoriteList;
+        return meteoriteList.stream().limit(500).collect(Collectors.toList());
     }
-
 
     @GetMapping("api/meteorites/{id}")
     public Meteorite getMeteorite(@PathVariable("id") Integer id) {
