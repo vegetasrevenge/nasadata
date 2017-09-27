@@ -22,19 +22,15 @@ public class NasadataApplicationTests {
 
 	@Transactional
 	@Test
-	public void addTest() {
+	public void getByIdTest() {
 
-		Meteorite meteorite = MeteoriteUtils.createTestMeteorite();
-		Meteorite meteorite1 = MeteoriteUtils.createTestMeteorite();
+		Meteorite meteorite = meteoriteService.getById(1);
 
-		meteoriteService.add(meteorite);
-		meteoriteService.add(meteorite1);
 
-		List<Meteorite> meteoriteList = meteoriteService.getAll();
+//		List<Meteorite> meteoriteList = meteoriteService.getAll();
 
-		Meteorite meteorite2 = MeteoriteUtils.findInList(meteoriteList, meteorite.getName());
 
-		Assert.assertNotNull("The test passes and has recieved: ", meteorite2.getName());
+		Assert.assertNotNull("The test passes and has received: ", meteorite.getName());
 	}
 
 }

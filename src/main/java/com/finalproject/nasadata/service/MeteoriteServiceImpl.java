@@ -31,9 +31,7 @@ public class MeteoriteServiceImpl implements MeteoriteService {
         return meteoriteRepository.findOne(id);
     }
     @Override
-    public List<Meteorite> getAll() {
-        return meteoriteRepository.findAll();
-    }
+    public List<Meteorite> getAll() { return meteoriteRepository.findAll(); }
     @Transactional
     @Override
     public void update(Meteorite meteorite) {

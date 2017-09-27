@@ -114,31 +114,12 @@ public class Meteorite {
 
         Meteorite meteorite = (Meteorite) o;
 
-        if (!name.equals(meteorite.name)) return false;
-        if (!id.equals(meteorite.id)) return false;
-        if (!nameType.equals(meteorite.nameType)) return false;
-        if (!recClass.equals(meteorite.recClass)) return false;
-        if (!mass.equals(meteorite.mass)) return false;
-        if (!fall.equals(meteorite.fall)) return false;
-        if (year != null ? !year.equals(meteorite.year) : meteorite.year != null) return false;
-        if (recLat != null ? !recLat.equals(meteorite.recLat) : meteorite.recLat != null) return false;
-        if (recLong != null ? !recLong.equals(meteorite.recLong) : meteorite.recLong != null) return false;
-        return geolocation != null ? geolocation.equals(meteorite.geolocation) : meteorite.geolocation == null;
+        return id.equals(meteorite.id);
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + id.hashCode();
-        result = 31 * result + nameType.hashCode();
-        result = 31 * result + recClass.hashCode();
-        result = 31 * result + mass.hashCode();
-        result = 31 * result + fall.hashCode();
-        result = 31 * result + (year != null ? year.hashCode() : 0);
-        result = 31 * result + (recLat != null ? recLat.hashCode() : 0);
-        result = 31 * result + (recLong != null ? recLong.hashCode() : 0);
-        result = 31 * result + (geolocation != null ? geolocation.hashCode() : 0);
-        return result;
+        return id.hashCode();
     }
 
     @Override

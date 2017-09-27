@@ -23,14 +23,14 @@ public class MeteoriteController {
     private ObjectMapper objectMapper = new ObjectMapper();
 
 
-    @GetMapping("/meteorites")
+    @GetMapping("api/meteorites")
     public List<Meteorite> getMeteorites() {
         List<Meteorite> meteoriteList = meteoriteService.getAll();
         return meteoriteList;
     }
 
 
-    @GetMapping("/meteorites/{id}")
+    @GetMapping("api/meteorites/{id}")
     public Meteorite getMeteorite(@PathVariable("id") Integer id) {
         return meteoriteService.getById(id);
     }
