@@ -16,7 +16,7 @@ public class Meteorite {
     private String recClass;
     private Double mass;
     private String fall;
-    private String year;
+    private Integer year;
     private Double recLat;
     private Double recLong;
 
@@ -76,10 +76,10 @@ public class Meteorite {
     }
 
     @Column(name="year")
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
-    public void setYear(String timestamp) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

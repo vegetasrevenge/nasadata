@@ -25,10 +25,10 @@ public class ViewsController {
         return "meteorites";
     }
 
+
+
     public List<Meteorite> getAll(){
-        List<Meteorite> meteorites = meteoriteService.getAll().stream().limit(10).collect(Collectors.toList());
+        List<Meteorite> meteorites = meteoriteService.getAll().stream().collect(Collectors.toList());
         return meteorites;
     }
-
-
 }

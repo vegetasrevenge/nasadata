@@ -18,7 +18,7 @@ public class MeteoriteUtils {
         String recClass = "sample reClass";
         Double mass = 10.0;
         String fall = "Found";
-        String year = "1989";
+        Integer year = 1989;
         Double recLat = 10.0002;
         Double recLong = -11.394;
 //        String geoLocation = new Point();

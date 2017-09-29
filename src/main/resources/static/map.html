@@ -11,26 +11,41 @@
 <body>
 <h3>My Google Maps Demo</h3>
 <div id="map"></div>
+
+<form action="/api/meteorites" method="GET">
+    <input id="min" type="text" name="min" min="860"/>
+    <input id="max" type="text" name="max" max="2015"/>
+    <button id="button" type="submit">Search</button>
+</form>
 <script>
 
     let map;
 
     function initMap() {
-        var acapulco = {lat: 16.88333, lng: -99.9};
+        var origin = {lat: 0, lng: 0};
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
-            center: acapulco
+            center: origin
         });
         var marker = new google.maps.Marker({
-            position: acapulco,
+            position: origin,
             map: map
         });
     }
 
-    fetch('/api/meteorites')
-        .then(function (response) {
-            return response.json();
-        }).then(plotMarkers);
+    const button = document.querySelector("#button");
+    const min = document.querySelector("#min");
+    const max = document.querySelector("#max");
+
+    button.addEventListener("click", fetchFunction);
+    function fetchFunction(evt) {
+        evt.preventDefault();
+
+        fetch(`/api/meteorites?min=${min.value}&max=${max.value}`)
+            .then(function (response) {
+                return response.json();
+            }).then(plotMarkers);
+    }
 
     let markers;
     let bounds;
