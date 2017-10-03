@@ -2,6 +2,7 @@ package com.finalproject.nasadata.controller;
 
 
 import com.finalproject.nasadata.domain.Meteorite;
+import com.finalproject.nasadata.repository.MeteoriteRepository;
 import com.finalproject.nasadata.service.MeteoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -41,4 +42,11 @@ public class MeteoriteController {
     public Meteorite getMeteorite(@PathVariable("id") Integer id) {
         return meteoriteService.getById(id);
     }
+
+//    @PostMapping("api/add_meteorite")
+//    public @ResponseBody Meteorite addMeteorite(Meteorite input) {
+//        System.out.println(input);
+//        return meteoriteService.add(input);
+//    }
 }
+

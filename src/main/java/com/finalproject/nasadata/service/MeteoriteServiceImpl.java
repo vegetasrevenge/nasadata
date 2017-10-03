@@ -3,6 +3,7 @@ package com.finalproject.nasadata.service;
 import com.finalproject.nasadata.domain.Meteorite;
 import com.finalproject.nasadata.repository.MeteoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,11 +38,10 @@ public class MeteoriteServiceImpl implements MeteoriteService {
     public void update(Meteorite meteorite) {
         meteoriteRepository.save(meteorite);
     }
+
     @Transactional
     @Override
     public void delete(int id) {
         meteoriteRepository.delete(id);
     }
-
-
 }

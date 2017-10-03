@@ -11,7 +11,7 @@ import java.awt.*;
 public class Meteorite {
 
     private String name;
-    private Integer id;
+    private Integer meteoriteId;
     private String nameType;
     private String recClass;
     private Double mass;
@@ -19,9 +19,6 @@ public class Meteorite {
     private Integer year;
     private Double recLat;
     private Double recLong;
-
-    private String geolocation;
-
 
     public Meteorite() {
     }
@@ -35,12 +32,12 @@ public class Meteorite {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer getId() {
-        return id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer getMeteoriteId() {
+        return meteoriteId;
     }
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMeteoriteId(Integer id) {
+        this.meteoriteId = id;
     }
 
     @Column(name="nametype")
@@ -99,14 +96,6 @@ public class Meteorite {
         this.recLong = recLong;
     }
 
-    @Column(name="geolocation")
-    public String getGeolocation() {
-        return geolocation;
-    }
-    public void setGeolocation(String geolocation) {
-        this.geolocation = geolocation;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,19 +103,19 @@ public class Meteorite {
 
         Meteorite meteorite = (Meteorite) o;
 
-        return id.equals(meteorite.id);
+        return meteoriteId.equals(meteorite.meteoriteId);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return meteoriteId.hashCode();
     }
 
     @Override
     public String toString() {
         return "Meteorite{" +
                 "name='" + name + '\'' +
-                ", id=" + id +
+                ", id=" + meteoriteId +
                 ", nameType='" + nameType + '\'' +
                 ", reClass='" + recClass + '\'' +
                 ", mass=" + mass +
@@ -134,7 +123,6 @@ public class Meteorite {
                 ", timestamp='" + year + '\'' +
                 ", recLat=" + recLat +
                 ", recLong=" + recLong +
-                ", geolocation=" + geolocation +
                 '}';
     }
 
