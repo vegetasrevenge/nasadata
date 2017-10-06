@@ -7,9 +7,8 @@ import java.util.List;
 
 @Component
 public interface UserService {
-    public User add(User user);
-    void add(List<User> userList);
-    User getById(int id);
+    User get(User user);
+    User add(User user);
     List<User> getAll();
     void update(User user);
     void delete(int id);

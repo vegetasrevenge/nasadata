@@ -18,16 +18,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User add(User user) {return userRepository.save(user);}
 
-    @Transactional
-    @Override
-    public void add(List<User> userList) {
-        for(User user: userList) {
-            userRepository.save(user);
-        }
-    }
+//    @Transactional
+//    @Override
+//    public void (List<User> userList) {
+//        for(User user: userList) {
+//            userRepository.save(user);
+//        }
+//    }
+
+//    @Override
+//    public User getById(int id) {return userRepository.findOne(id);}
 
     @Override
-    public User getById(int id) {return userRepository.findOne(id);}
+    public User get(User user) {
+        return userRepository.findByUsername(user.getUsername());
+    }
 
     @Override
     public List<User> getAll() {return userRepository.findAll();}

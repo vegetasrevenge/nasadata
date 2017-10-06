@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NasadataApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(NasadataApplication.class, args);
+
+
 	}
 }

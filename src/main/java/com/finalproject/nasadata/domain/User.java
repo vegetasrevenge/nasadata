@@ -3,7 +3,7 @@ package com.finalproject.nasadata.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     private String id;
@@ -24,11 +24,11 @@ public class User {
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
-    @Column(name = "firstname")
+    @Column(name = "first_name")
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    @Column(name = "lastname")
+    @Column(name = "last_name")
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 

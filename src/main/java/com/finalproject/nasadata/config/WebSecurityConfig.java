@@ -18,25 +18,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
+
         http
-                .authorizeRequests()
-                .antMatchers("/", "/map", "/register").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
+            .authorizeRequests()
+            .antMatchers("/", "/map", "/register", "/api/meteorites", "../static/map_style.css", "/static/map_style.css", "map_style.css", "/map_style.css", "/login_post").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
                 .loginPage("/login")
                 .permitAll()
+                .defaultSuccessUrl("/map", true)
                 .and()
-                .logout()
-                .permitAll();
-        // @formatter:on
+            .logout()
+                .permitAll()
+                .logoutSuccessUrl("/map");
+
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(this.dataSource)
-                .usersByUsernameQuery("select username, password, enabled from user where username=?")
+                .usersByUsernameQuery("select username, password from users where username=?")
                 .authoritiesByUsernameQuery("select username, authority from authority where username = ?");
     }
 }

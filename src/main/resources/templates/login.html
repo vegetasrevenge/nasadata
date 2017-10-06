@@ -3,23 +3,25 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="../static/map_style.css"/>
     </head>
     <body>
 
-        <nav>
-            <a href="/map">Map</a>
-            <a href="/register">Register</a>
+        <nav class="nav">
+            <li><a href="/map"><h2>Map</h2></a></li>
+            <li><a href="/register"><h2>Register</h2></a></li>
         </nav>
+
+        <div th:if="${param.error}">
+            <h2>Login Authentication Error</h2>
+        </div>
 
         <h2>Login</h2>
 
-        <form action="/login" method="POST">
-            <input type="text" name="user" placeholder="Username"/>
+        <form th:action="@{/login_post}" method="POST">
+            <input type="text" name="username" placeholder="Username"/>
             <input type="text" name="password" placeholder="Password"/>
             <button type="submit">Login</button>
         </form>
-
-
-
     </body>
 </html>

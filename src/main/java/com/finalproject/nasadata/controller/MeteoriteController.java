@@ -32,6 +32,11 @@ public class MeteoriteController {
         return "redirect:/map";
     }
 
+    @RequestMapping(value="/map", method = RequestMethod.GET)
+    public String maps(Model model){
+        return "map";
+    }
+
 
     public List<Meteorite> getAll(){
         List<Meteorite> meteorites = meteoriteService.getAll().stream().collect(Collectors.toList());

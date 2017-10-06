@@ -2,21 +2,22 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>Login</title>
+        <title>Register</title>
+        <link rel="stylesheet" type="text/css" href="../static/map_style.css"/>
     </head>
     <body>
 
-        <nav>
-            <a href="/map">Map</a>
-            <a href="/login">Login</a>
+        <nav class="nav">
+            <li><a href="/map"><h2>Map</h2></a></li>
+            <li><a href="/login"><h2>Login</h2></a></li>
         </nav>
 
         <h2>Register</h2>
 
-        <form action="/register" method="POST">
+        <form th:action="@{/register}" method="post">
             <input type="text" name="firstName" placeholder="First Name"/>
             <input type="text" name="lastName" placeholder="Last Name"/>
-            <input type="text" name="user" placeholder="Username"/>
+            <input type="text" name="username" placeholder="Username"/>
             <input type="text" name="password" placeholder="Password"/>
             <input type="email" name="email" placeholder="E-Mail"/>
             <button type="submit">Login</button>

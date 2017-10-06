@@ -26,13 +26,7 @@ public class ViewsController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("message", "Successful login");
         return "redirect:/map";}
-
-    @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String login(){
-        return "login";
-    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(){
@@ -40,12 +34,6 @@ public class ViewsController {
     }
 
 
-
-
-    @RequestMapping(value="/map", method = RequestMethod.GET)
-    public String maps(Model model){
-        return "map";
-    }
 
 
 }
