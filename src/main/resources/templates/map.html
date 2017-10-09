@@ -79,13 +79,14 @@
         const button = document.querySelector("#button");
         const min = document.querySelector("#min");
         const max = document.querySelector("#max");
+        const fall = document.querySelector("#fall");
 
 
 
         button.addEventListener("click", fetchFunction);
         function fetchFunction(evt) {
             evt.preventDefault();
-            fetch(`/api/meteorites?min=${min.value}&max=${max.value}`)
+            fetch(`/api/meteorites?min=${min.value}&max=${max.value}&fall=${fall.value}`)
                 .then(function (response) {
                     return response.json();
                 }).then(plotMarkers);
