@@ -59,8 +59,12 @@ body {
 }
 
 .form {
-    margin-left: 5%;
+    margin-left: 45%;
+    margin-top: 10%;
+    padding: 10pt;
+    width: 25%;
     border: solid 2pt #258cd1;
+
 }
 article,
 aside,
