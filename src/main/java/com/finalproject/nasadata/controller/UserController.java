@@ -29,11 +29,11 @@ public class UserController {
     public String login(){
         return "login"; }
 
-    @RequestMapping(value="/login_post", method = RequestMethod.POST)
-    public String login(User user) throws IOException {
-        userService.get(user);
-        return "redirect:/map";
-    }
+//    @RequestMapping(value="/login_post", method = RequestMethod.POST)
+//    public String login(User user) throws IOException {
+//        userService.get(user);
+//        return "redirect:/map";
+//    }
 
     @RequestMapping(value="/logout", method = RequestMethod.POST)
     public String logout(User user) {
