@@ -34,4 +34,10 @@ public class UserController {
         userService.get(user);
         return "redirect:/map";
     }
+
+    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    public String logout(User user) {
+        userService.get(user);
+        return "redirect:/map";
+    }
 }

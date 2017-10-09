@@ -27,7 +27,7 @@
                 <button id="button" type="submit">Search</button>
             </fieldset>
         </form>
-        <div sec:authorize="isAuthenticated()">
+        <div th:authorize="isAuthenticated()">
             <form action="/add_meteorite" method="POST">
                 <fieldset>
                     <legend class="fieldset">Record Your Meteorite</legend>
