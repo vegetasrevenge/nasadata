@@ -59,10 +59,9 @@ body {
 }
 
 .form {
-    margin-left: 45%;
-    margin-top: 10%;
+    margin: 10% auto;
     padding: 10pt;
-    width: 25%;
+    width: 350px;
     border: solid 2pt #258cd1;
 
 }
