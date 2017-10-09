@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .permitAll()
                 .logoutSuccessUrl("/map");
+        System.out.println(http);
 
     }
 
