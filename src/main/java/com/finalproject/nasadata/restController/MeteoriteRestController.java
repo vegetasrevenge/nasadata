@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import java.util.List;
-import com.sun.deploy.config.*;
 
 
 
 @RestController
 public class MeteoriteRestController {
+
     @Autowired
     private MeteoriteService meteoriteService;
 
