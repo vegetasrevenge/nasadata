@@ -21,7 +21,6 @@
     <div class="container">
         <h3>Meteorite Map Tool</h3>
         <div id="map"></div>
-        <input type="text" id="pac-input" placeholder="Search Location"/>
         <form class="map-form" action="/api/meteorites" method="GET">
             <fieldset>
                 <legend class="fieldset">Search Meteorites By Year</legend>
@@ -81,14 +80,7 @@
         const max = document.querySelector("#max");
 
 
-        var input = document.querySelector("#pac-input");
-        var searchBox = new google.maps.places.SearchBox(input);
 
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        map.addListener('bounds_changed', function() {
-            searchBox.setBounds(map.getBounds());
-        });
         button.addEventListener("click", fetchFunction);
         function fetchFunction(evt) {
             evt.preventDefault();
