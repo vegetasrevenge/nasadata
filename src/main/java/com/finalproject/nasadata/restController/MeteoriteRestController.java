@@ -17,8 +17,6 @@ public class MeteoriteRestController {
     @Autowired
     private MeteoriteService meteoriteService;
 
-
-
     @PersistenceContext
     public EntityManager em;
 
