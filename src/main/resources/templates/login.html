@@ -12,13 +12,11 @@
             <li><a href="/register"><h2>Register</h2></a></li>
         </nav>
 
-        <div th:if="${param.error}">
-            <h2>Login Authentication Error</h2>
-        </div>
+
 
         <h2>Login</h2>
 
-        <form th:action="@{/login}" method="POST">
+        <form class="form" th:action="@{/login}" method="POST">
             <input type="text" name="username" placeholder="Username"/>
             <input type="text" name="password" placeholder="Password"/>
             <button type="submit">Login</button>
