@@ -22,11 +22,12 @@ public class MeteoriteRestController {
 
     @GetMapping("api/meteorites")
     @SuppressWarnings("unchecked")
-    public List<Meteorite> getMeteoritesByYear(@RequestParam(name = "min") Integer minimum, @RequestParam(name = "max") Integer maximum) {
+    public List<Meteorite> getMeteoritesByYear(@RequestParam(name = "min") Integer minimum, @RequestParam(name = "max") Integer maximum, @RequestParam(name="fall") String fall) {
 
-        return em.createQuery("SELECT m FROM Meteorite m WHERE m.year > :minimum AND m.year < :maximum")
+        return em.createQuery("SELECT m FROM Meteorite m WHERE m.year > :minimum AND m.year < :maximum AND m.fall = :fall")
                 .setParameter("minimum", minimum)
                 .setParameter("maximum", maximum)
+                .setParameter("fall", fall)
                 .getResultList();
     }
 

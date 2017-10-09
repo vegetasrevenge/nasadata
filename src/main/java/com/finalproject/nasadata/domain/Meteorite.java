@@ -1,6 +1,7 @@
 package com.finalproject.nasadata.domain;
 
 import javax.persistence.*;
+import java.awt.*;
 
 @Entity
 @Table(name="meteorite")
