@@ -13,13 +13,16 @@
                 <input type="submit" value="Sign Out"/>
             </form>
         </div></li>
+        <li><div class="signout"><div th:if="${param.logout}">
+            You have been logged out.
+        </div></div></li>
     </nav>
 
     <div class="container">
         <h3>Meteorite Map Tool</h3>
         <div id="map"></div>
 
-        <form action="/api/meteorites" method="GET">
+        <form class="map-form" action="/api/meteorites" method="GET">
             <fieldset>
                 <legend class="fieldset">Search Meteorites By Year</legend>
                 <input id="min" type="text" name="min" min="860" placeholder="Start Year"/>
@@ -28,7 +31,7 @@
             </fieldset>
         </form>
         <div th:authorize="isAuthenticated()">
-            <form action="/add_meteorite" method="POST">
+            <form class="map-form" action="/add_meteorite" method="POST">
                 <fieldset>
                     <legend class="fieldset">Record Your Meteorite</legend>
                     <input type="text" name="name" placeholder="Name"/>

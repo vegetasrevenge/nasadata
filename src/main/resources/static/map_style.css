@@ -63,8 +63,14 @@ body {
     padding: 10pt;
     width: 350px;
     border: solid 2pt #258cd1;
-
 }
+
+.map-form {
+    border: solid 2pt #258cd1;
+    margin: 5% auto;
+}
+
+
 article,
 aside,
 details,
@@ -169,6 +175,8 @@ textarea {
     color: inherit;
     font: inherit;
     margin: 0;
+    padding: 5px;
+    margin: 3px;
 }
 button {
     overflow: visible;
