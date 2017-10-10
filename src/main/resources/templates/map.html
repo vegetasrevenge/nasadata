@@ -8,6 +8,7 @@
     <nav class="nav">
         <li><a href="/login"><h2>Login</h2></a></li>
         <li><a href="/register"><h2>Register</h2></a></li>
+        <li><a href="/record"><h2>Record</h2></a></li>
         <li><div class="signout" sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Sign Out"/>
@@ -26,27 +27,14 @@
                 <legend class="fieldset">Search Meteorites</legend>
                 <input id="min" type="text" name="min" min="860" placeholder="Start Year"/>
                 <input id="max" type="text" name="max" max="2015" placeholder="End Year"/>
-                <input id="fall" type="text" name="fall" placeholder="Observed Fall or Found"/>
-                <input id="mass" type="text" name="mass" placeholder="Mass(g)">
                 <button id="button" type="submit">Search</button>
             </fieldset>
         </form>
-        <div th:authorize="isAuthenticated()">
-            <form class="map-form" action="/add_meteorite" method="POST">
-                <fieldset>
-                    <legend class="fieldset">Record Your Meteorite</legend>
-                    <input type="text" name="name" placeholder="Name"/>
-                    <input type="text" name="nameType" placeholder="Name Type"/>
-                    <input type="text" name="recClass" placeholder="Class"/>
-                    <input type="number" name="mass" placeholder="Mass(g)"/>
-                    <input type="text" name="fall" placeholder="Observed Fall or Found"/>
-                    <input type="number" name="year" placeholder="Year Discovered"/>
-                    <input type="text" name="recLat" placeholder="Latitude"/>
-                    <input type="text" name="recLong" placeholder="Longitude"/>
-                    <button type="submit">Submit</button>
-                </fieldset>
-            </form>
-        </div>
+        <form class="map-form" action="api/search_by_details" method="GET">
+            <input id="fall" type="text" name="fall" placeholder="Observed Fall or Found"/>
+            <input id="mass" type="text" name="mass" placeholder="Mass(g)"/>
+            <button id="narrowButton" type="submit">Narrow The Results</button>
+        </form>
 
         <div>
             <h2 th:text="${message}"></h2>
@@ -78,21 +66,31 @@
         }
 
         const button = document.querySelector("#button");
+        const narrowButton = document.querySelector("#narrowButton");
         const min = document.querySelector("#min");
         const max = document.querySelector("#max");
         const fall = document.querySelector("#fall");
-
+        const mass = document.querySelector("#mass");
 
 
         button.addEventListener("click", fetchFunction);
+        narrowButton.addEventListener("click", narrowFunction);
+
         function fetchFunction(evt) {
             evt.preventDefault();
-            fetch(`/api/meteorites?min=${min.value}&max=${max.value}&fall=${fall.value}`)
+            fetch(`/api/meteorites?min=${min.value}&max=${max.value}`)
                 .then(function (response) {
                     return response.json();
                 }).then(plotMarkers);
         }
 
+        function narrowFunction(evt) {
+            evt.preventDefault();
+            fetch(`/api/search_by_details?fall=${fall.value}&mass=${mass.value}`)
+                .then(function (response) {
+                return response.json();
+            }).then(plotMarkers);
+        }
 
         function plotMarkers(m) {
             if(markers) {
@@ -107,7 +105,7 @@
             m.forEach(function (marker) {
                 //create text windows for marker
                 var position = new google.maps.LatLng(marker.recLat, marker.recLong);
-                console.log(marker);
+//                console.log(marker);
                 markers.push(
                     new google.maps.Marker({
                         position: position,

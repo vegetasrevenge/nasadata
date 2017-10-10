@@ -28,7 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
             .and()
             .authorizeRequests()
-            .antMatchers("/googleb495abb535b82d92.html", "/", "/map", "/register", "/api/meteorites", "../static/map_style.css", "/static/map_style.css", "map_style.css", "/map_style.css").permitAll()
+            .antMatchers("/googleb495abb535b82d92.html", "/login",
+                    "/", "/map", "/register", "/api/meteorites",
+                    "/api/search_by_details", "../static/map_style.css",
+                    "/static/map_style.css", "map_style.css", "/map_style.css").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
@@ -46,10 +49,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(this.dataSource)
-                .usersByUsernameQuery("select username, password from users where username=?")
-                .authoritiesByUsernameQuery("select username, authority from authority where username = ?");
+                .usersByUsernameQuery("select username, password, enabled from users where username=?");
+//                .authoritiesByUsernameQuery("select username, authority from authority where username = ?");
     }
-
     @Bean
     public PasswordEncoder passwordEncoder(){
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Record a Meteorite</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/map_style.css}" href="../static/map_style.css"/>
+</head>
+<body>
+
+    <nav class="nav">
+        <li><a href="/map"><h2>Map</h2></a></li>
+        <li><a href="/register"><h2>Register</h2></a></li>
+        <li><div class="signout" sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+        </div></li>
+        <li><div class="signout"><div th:if="${param.logout}">
+            You have been logged out.
+        </div></div></li>
+    </nav>
+    <div>
+        <form class="map-form" action="/add_meteorite" method="POST">
+            <fieldset>
+                <legend class="fieldset">Record Your Meteorite</legend>
+                <input type="text" name="name" placeholder="Name"/>
+                <input type="text" name="nameType" placeholder="Name Type"/>
+                <input type="text" name="recClass" placeholder="Class"/>
+                <input type="number" name="mass" placeholder="Mass(g)"/>
+                <input type="text" name="fall" placeholder="Observed Fall or Found"/>
+                <input type="number" name="year" placeholder="Year Discovered"/>
+                <input type="text" name="recLat" placeholder="Latitude"/>
+                <input type="text" name="recLong" placeholder="Longitude"/>
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>

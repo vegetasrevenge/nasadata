@@ -21,15 +21,6 @@ public class MeteoriteController {
     @Autowired
     private MeteoriteService meteoriteService;
 
-    @Autowired
-    private MeteoriteRestController meteoriteRestController;
-
-//    @RequestMapping(value = "/meteorites", method = RequestMethod.GET)
-//    public String allMeteorites(Model model) {
-//        model.addAttribute("meteorites", getAll());
-//        return "meteorites";
-//    }
-
     @RequestMapping(value="/add_meteorite", method = RequestMethod.POST)
     public String addMeteorite(@Valid Meteorite meteorite, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("message", "Your meteor is on the way.");
@@ -38,15 +29,8 @@ public class MeteoriteController {
     }
 
     @RequestMapping(value="/map", method = RequestMethod.GET)
-    public String map(Model model){
+    public String map(){
         return "map";
     }
 
-
-
-
-//    public List<Meteorite> getAll(){
-//        List<Meteorite> meteorites = meteoriteService.getAll().stream().collect(Collectors.toList());
-//        return meteorites;
-//    }
 }
