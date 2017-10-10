@@ -27,15 +27,15 @@
                 <legend class="fieldset">Search Meteorites</legend>
                 <input id="min" type="text" name="min" min="860" placeholder="Start Year"/>
                 <input id="max" type="text" name="max" max="2015" placeholder="End Year"/>
+                <select name="fall" id="fall">
+                    <option value="">Discovery Method</option>
+                    <option value="">All</option>
+                    <option value="Fell">Fell</option>
+                    <option value="Found">Found</option>
+                </select>
                 <button id="button" type="submit">Search</button>
             </fieldset>
         </form>
-        <form class="map-form" action="api/search_by_details" method="GET">
-            <input id="fall" type="text" name="fall" placeholder="Observed Fall or Found"/>
-            <input id="mass" type="text" name="mass" placeholder="Mass(g)"/>
-            <button id="narrowButton" type="submit">Narrow The Results</button>
-        </form>
-
         <div>
             <h2 th:text="${message}"></h2>
         </div>
@@ -70,26 +70,18 @@
         const min = document.querySelector("#min");
         const max = document.querySelector("#max");
         const fall = document.querySelector("#fall");
-        const mass = document.querySelector("#mass");
+//        const mass = document.querySelector("#mass");
 
 
         button.addEventListener("click", fetchFunction);
-        narrowButton.addEventListener("click", narrowFunction);
+//        narrowButton.addEventListener("click", narrowFunction);
 
         function fetchFunction(evt) {
             evt.preventDefault();
-            fetch(`/api/meteorites?min=${min.value}&max=${max.value}`)
+            fetch(`/api/meteorites?min=${min.value}&max=${max.value}&fall=${fall.value}`)
                 .then(function (response) {
                     return response.json();
                 }).then(plotMarkers);
-        }
-
-        function narrowFunction(evt) {
-            evt.preventDefault();
-            fetch(`/api/search_by_details?fall=${fall.value}&mass=${mass.value}`)
-                .then(function (response) {
-                return response.json();
-            }).then(plotMarkers);
         }
 
         function plotMarkers(m) {
@@ -106,13 +98,12 @@
             m.forEach(function (o) {
                 //create text windows for marker
                 var contentString = `Name: ${o.name} <br> Class: ${o.recClass}<br>
-                Mass: ${o.mass} <br> Observed Fall: ${o.fall} <br>
+                Mass: ${o.mass} <br> Discovery Method: ${o.fall} <br> Found at Location: ${o.recLat}, ${o.recLong}
                 `;
                 var position = new google.maps.LatLng(o.recLat, o.recLong);
                 var infoWindow = new google.maps.InfoWindow({
                     content: contentString
                 });
-                console.log(o);
                 var marker = new google.maps.Marker({
                     position: position,
                     map: map,

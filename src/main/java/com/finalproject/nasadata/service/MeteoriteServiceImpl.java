@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
@@ -14,6 +17,9 @@ public class MeteoriteServiceImpl implements MeteoriteService {
 
     @Autowired
     MeteoriteRepository meteoriteRepository;
+
+    @PersistenceContext
+    public EntityManager em;
 
     @Transactional
     @Override
@@ -43,5 +49,21 @@ public class MeteoriteServiceImpl implements MeteoriteService {
     @Override
     public void delete(int id) {
         meteoriteRepository.delete(id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Meteorite> getAllBySomeCoolStuff(Integer minimum, Integer maximum, String fall){
+        if(fall == null || fall.isEmpty()){
+            fall = "%";
+        }
+
+        List<Meteorite> meteoriteList = em.createQuery("SELECT m FROM Meteorite m WHERE m.year > :minimum AND m.year < :maximum AND m.fall like :fall")
+                .setParameter("minimum", minimum)
+                .setParameter("maximum", maximum)
+                .setParameter("fall", fall)
+                .getResultList();
+
+
+        return meteoriteList;
     }
 }
