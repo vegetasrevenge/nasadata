@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .permitAll()
                 .logoutSuccessUrl("/map");
-        System.out.println("Configure method firing: " + http);
+        System.out.println("**************************Configure method is firing: " + http + "**********************************");
 
     }
 
