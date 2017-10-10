@@ -93,25 +93,37 @@
         }
 
         function plotMarkers(m) {
+
             if(markers) {
                 for (var i = 0; i < markers.length; i++) {
                     markers[i].setMap(null);
                 }
             }
-
             markers = [];
             bounds = new google.maps.LatLngBounds();
             console.log(map);
-            m.forEach(function (marker) {
+
+            m.forEach(function (o) {
                 //create text windows for marker
-                var position = new google.maps.LatLng(marker.recLat, marker.recLong);
-//                console.log(marker);
+                var contentString = `Name: ${o.name} <br> Class: ${o.recClass}<br>
+                Mass: ${o.mass} <br> Observed Fall: ${o.fall} <br>
+                `;
+                var position = new google.maps.LatLng(o.recLat, o.recLong);
+                var infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                console.log(o);
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    infoWindow: infoWindow
+                });
+                marker.addListener("click", () => {
+                    infoWindow.open(map, marker);
+                });
                 markers.push(
-                    new google.maps.Marker({
-                        position: position,
-                        map: map,
-                        animation: google.maps.Animation.DROP,
-                    })
+                    marker
                 );
                 bounds.extend(position);
             })
