@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>About</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/map_style.css}" href="../static/map_style.css" />
+</head>
+<body>
+
+    <nav class="nav">
+        <li><a href="/login"><h2>Login</h2></a></li>
+        <li><a href="/register"><h2>Register</h2></a></li>
+        <li><a href="/record"><h2>Record</h2></a></li>
+        <li>
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <input class="signout" type="submit" value="Sign Out"/>
+                </form>
+            </div>
+        </li>
+        <li>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+        </li>
+    </nav>
+
+    <div class="about">
+        <h2>NASA Data Mapping Project</h2>
+
+        <p>This project uses open datasets from <a href="https://data.nasa.gov/">Nasa</a> (for now, meteorites) to allow you access to a visual representation of records obtained. <br/>
+            The meteorite data itself is quite extensive, with over 45,000 entries ranging from AD860 to 2015 and across the globe. <br/>
+            Upon logging in, you can actually record data yourself. So give it a go, search for more meteorites and stay tuned as more datasets are obtained!
+        </p>
+
+        <p>Major credits to NASA for such thorough and copious data, all available to the public.</p>
+        <p>More thanks to the team at the Iron Yard - Dallas for being dedicated to inspiring hard-working people. Without you, this website would not exist.</p>
+
+        <p>Creator of this website is Casey Edwards. <br/>
+            Check out his portfolio <a href="https://casey-edwards-portfolio.herokuapp.com/">here</a>.
+        </p>
+    </div>
+
+</body>
+</html>

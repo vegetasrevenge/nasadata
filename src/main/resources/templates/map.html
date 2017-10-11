@@ -6,17 +6,22 @@
 <body>
 
     <nav class="nav">
+        <li><a href="/about"><h2>About</h2></a></li>
         <li><a href="/login"><h2>Login</h2></a></li>
         <li><a href="/register"><h2>Register</h2></a></li>
         <li><a href="/record"><h2>Record</h2></a></li>
-        <li><div class="signout" sec:authorize="isAuthenticated()">
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
-        </div></li>
-        <li><div class="signout"><div th:if="${param.logout}">
+        <li>
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <input class="signout" type="submit" value="Sign Out"/>
+                </form>
+            </div>
+        </li>
+        <li>
+            <div th:if="${param.logout}">
             You have been logged out.
-        </div></div></li>
+            </div>
+        </li>
     </nav>
 
     <div class="container">
