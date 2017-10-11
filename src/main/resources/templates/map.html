@@ -99,7 +99,10 @@
             markers = [];
             bounds = new google.maps.LatLngBounds();
             console.log(map);
-
+            let icon = {
+                url: '/if_meteor_749391.png',
+                origin: new google.maps.Point(0,0)
+            };
             m.forEach(function (o) {
                 //create text windows for marker
                 var contentString = `Name: ${o.name} <br> Class: ${o.recClass}<br>
@@ -109,10 +112,12 @@
                 var infoWindow = new google.maps.InfoWindow({
                     content: contentString
                 });
+
                 var marker = new google.maps.Marker({
                     position: position,
                     map: map,
-                    animation: google.maps.Animation.DROP,
+                    icon: icon,
+//                    animation: google.maps.Animation.DROP,
                     infoWindow: infoWindow
                 });
                 marker.addListener("click", () => {

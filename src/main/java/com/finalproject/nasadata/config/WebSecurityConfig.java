@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
             .and()
             .authorizeRequests()
-            .antMatchers("/googleb495abb535b82d92.html", "/login", "/about",
+            .antMatchers("/googleb495abb535b82d92.html", "/login", "/about", "/if_meteor_749391.png",
                     "/", "/map", "/register", "/api/meteorites",
                     "/api/search_by_details", "../static/map_style.css",
                     "/static/map_style.css", "map_style.css", "/map_style.css").permitAll()
