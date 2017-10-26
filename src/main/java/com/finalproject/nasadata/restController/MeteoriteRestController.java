@@ -22,8 +22,12 @@ public class MeteoriteRestController {
 
     @GetMapping("api/meteorites")
     @SuppressWarnings("unchecked")
-    public List<Meteorite> getMeteorites(@RequestParam(name = "min") Integer minimum, @RequestParam(name = "max") Integer maximum, @RequestParam(name = "fall", required = false) String fall) {
-            return meteoriteService.getAllBySomeCoolStuff(minimum, maximum, fall);
+    public List<Meteorite> getMeteorites(@RequestParam(name = "min") Integer minimum,
+                                         @RequestParam(name = "max") Integer maximum,
+                                         @RequestParam(name = "fall", required = false) String fall,
+                                         @RequestParam(name = "mass", required = false) Double mass
+    ) {
+            return meteoriteService.getAllBySomeCoolStuff(minimum, maximum, fall, mass);
     }
 
     @GetMapping("api/search_by_details")

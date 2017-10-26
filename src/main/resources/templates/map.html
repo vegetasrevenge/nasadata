@@ -38,6 +38,7 @@
                     <option value="Fell">Fell</option>
                     <option value="Found">Found</option>
                 </select>
+                <input type="text" id="mass" name="mass" placeholder="Max Mass(g)"/>
                 <button id="button" type="submit">Search</button>
             </fieldset>
         </form>
@@ -71,19 +72,16 @@
         }
 
         const button = document.querySelector("#button");
-        const narrowButton = document.querySelector("#narrowButton");
         const min = document.querySelector("#min");
         const max = document.querySelector("#max");
         const fall = document.querySelector("#fall");
-//        const mass = document.querySelector("#mass");
-
+        const mass = document.querySelector("#mass");
 
         button.addEventListener("click", fetchFunction);
-//        narrowButton.addEventListener("click", narrowFunction);
 
         function fetchFunction(evt) {
             evt.preventDefault();
-            fetch(`/api/meteorites?min=${min.value}&max=${max.value}&fall=${fall.value}`)
+            fetch(`/api/meteorites?min=${min.value}&max=${max.value}&fall=${fall.value}&mass=${mass.value}`)
                 .then(function (response) {
                     return response.json();
                 }).then(plotMarkers);
@@ -96,6 +94,7 @@
                     markers[i].setMap(null);
                 }
             }
+
             markers = [];
             bounds = new google.maps.LatLngBounds();
             console.log(map);
@@ -120,8 +119,11 @@
 //                    animation: google.maps.Animation.DROP,
                     infoWindow: infoWindow
                 });
-                marker.addListener("click", () => {
+                marker.addListener("mouseover", () => {
                     infoWindow.open(map, marker);
+                });
+                marker.addListener("mouseout", () => {
+                    infoWindow.close(map, marker);
                 });
                 markers.push(
                     marker

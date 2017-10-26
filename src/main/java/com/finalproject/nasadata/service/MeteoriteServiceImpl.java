@@ -52,15 +52,19 @@ public class MeteoriteServiceImpl implements MeteoriteService {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Meteorite> getAllBySomeCoolStuff(Integer minimum, Integer maximum, String fall){
+    public List<Meteorite> getAllBySomeCoolStuff(Integer minimum, Integer maximum, String fall, Double mass){
         if(fall == null || fall.isEmpty()){
             fall = "%";
         }
+        if(mass == null || mass.toString().isEmpty()) {
+            mass = 100000.0;
+        }
 
-        List<Meteorite> meteoriteList = em.createQuery("SELECT m FROM Meteorite m WHERE m.year > :minimum AND m.year < :maximum AND m.fall like :fall")
+        List<Meteorite> meteoriteList = em.createQuery("SELECT m FROM Meteorite m WHERE m.year > :minimum AND m.year < :maximum AND m.fall like :fall AND m.mass < :mass")
                 .setParameter("minimum", minimum)
                 .setParameter("maximum", maximum)
                 .setParameter("fall", fall)
+                .setParameter("mass", mass)
                 .getResultList();
 
 

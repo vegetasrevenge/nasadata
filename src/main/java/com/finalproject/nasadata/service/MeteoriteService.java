@@ -14,5 +14,5 @@ public interface MeteoriteService {
     List<Meteorite> getAll();
     void update(Meteorite meteorite);
     void delete(int id);
-    List<Meteorite> getAllBySomeCoolStuff(Integer minimum, Integer maximum, String fall);
+    List<Meteorite> getAllBySomeCoolStuff(Integer minimum, Integer maximum, String fall, Double mass);
 }
